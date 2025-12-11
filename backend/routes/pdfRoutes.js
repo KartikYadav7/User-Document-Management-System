@@ -9,6 +9,13 @@ const {
 } = require("../controllers/pdfController");
 
 // SIMPLE MULTER STORAGE (no middleware file)
+const uploadDir = "/tmp/pdfs";
+
+// Create folder if not exists
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "pdfs/"); // folder must exist
