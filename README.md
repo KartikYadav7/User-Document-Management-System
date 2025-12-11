@@ -5,55 +5,29 @@ Supports per-user PDF assignment, ZIP download generation, and email delivery.
 
 # 🚀 Features
 
-🔐 User Management
-
-📤 PDF Assignment
-
-📥 ZIP Download
-
+🔐 User Management  
+📤 PDF Assignment  
+📥 ZIP Download  
 ✉ Email Notifications
 
 # 🖥 How to Use
 
-Uplod CSV
-
-List users
-
-Upload or pick a PDF
-
-Select users for assignment
-
-Assign PDF
-
-Download ZIP
+1.Uplod CSV  
+2.List users  
+3.Upload or pick a PDF  
+4.Select users for assignment  
+5.Assign PDF  
+6.Download ZIP
 
 Automatically clears selection after assignment
 
 # 🛠 Tech Stack
 
-Frontend
+MERN Stack
 
-React
-
-Axios
-
-Bootstrap / Tailwind (depending on your UI)
-
-Backend
-
-Node.js
-
-Express.js
-
-MongoDB + Mongoose
-
-Nodemailer
-
-AdmZip
-
-Multer (optional for uploads)
 
 # 📁 Project Structure
+
 
 ```Backend
 /backend
@@ -87,7 +61,8 @@ git clone https://github.com/KartikYadav7/User-Document-Management-System.git
 cd document-system
 ```
 
-🖥 Backend Setup
+🖥 Backend Setup   
+
 2. Install dependencies
 cd backend
 ```
@@ -110,43 +85,42 @@ npm start
 ```
 
 💻 Frontend Setup
-1. Install dependencies
+1. Install dependencies 
+```
 cd frontend
 npm install
+```
+3. Configure API URL
 
-2. Configure API URL
+In api.js:  
 
-In api.js:
-
-export default axios.create({
+```export default axios.create({
   baseURL: import.meta.env.REACT_APP_API_URL || 'http://localhost:5000/api',
   timeout:60000,
 });
+```
 
 3. Run frontend
+```
 npm start
-
+```
 
 # 📌 Key Advantages
 
-✔ Assign PDFs quickly
-✔ Email delivery integrated
-✔ ZIP downloads for bulk export
-✔ No temp files → fast & safe
-✔ Clean React interface
-✔ MongoDB persistence
+✔ Assign PDFs quickly  
+✔ Email delivery integrated  
+✔ ZIP downloads for bulk export  
+✔ No temp files → fast & safe  
+✔ Clean React interface  
+✔ MongoDB persistence  
 
 # 🧩 Future Improvements
 
-User roles (Admin / Viewer)
-
-PDF preview before sending
-
-Upload multiple PDFs
-
-Activity log for assignments
-
-Pagination & search
+✔User roles (Admin / Viewer)  
+✔PDF preview before sending  
+✔Upload multiple PDFs  
+✔Activity log for assignments   
+✔Pagination & search  
 
 # 📜 License
 
