@@ -18,7 +18,7 @@ if (!fs.existsSync(pdfs)) {
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "pdfs"); 
+    cb(null, pdfs); 
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname) || ".pdf";
