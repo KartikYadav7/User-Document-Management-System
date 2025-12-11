@@ -1,0 +1,7 @@
+
+.pdf-input-container.blurred {
+  opacity: 0.5;
+  pointer-events: none; /* Prevents user interaction */
+  filter: blur(1px);    /* Optional subtle blur */
+  transition: all 0.2s ease;
+}
