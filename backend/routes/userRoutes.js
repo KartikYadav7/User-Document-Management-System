@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
+const fs = require("fs");
 const { uploadCSV, listUsers } = require("../controllers/userController");
 
 const csv = "/tmp/uploads/csv";
