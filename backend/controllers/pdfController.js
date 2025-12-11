@@ -11,13 +11,13 @@ exports.uploadOrCreatePDF = async (req, res) => {
 
     // 1) If user UPLOADED a PDF file
     if (req.file) {
-      pdfPath = "pdfs/" + req.file.filename;
+      pdfPath =  path.join("/tmp/pdfs", req.file.filename);
     }
 
     // 2) If user CHOSE to create one
     else if (req.body.title) {
       const filename = Date.now() + ".pdf";
-      pdfPath = "pdfs/" + filename;
+      pdfPath = path.join("/tmp/pdfs", filename);
 
       const doc = new PDFDocument();
       doc.pipe(fs.createWriteStream(pdfPath));
@@ -46,7 +46,7 @@ exports.assignPDF = async (req, res) => {
     if (!users || users.length === 0)
       return res.status(400).json({ message: "No users selected" });
 
-    if (!pdfPath)
+    if (!pdfPath || !fs.existsSync(pdfPath))
       return res.status(400).json({ message: "No PDF provided" });
 
     const userList = await User.find({ _id: { $in: users } });
@@ -59,7 +59,7 @@ exports.assignPDF = async (req, res) => {
       },
     });
 
-    const pdfFullPath = path.join(__dirname, "..", pdfPath);
+    // const pdfFullPath = path.join(__dirname, "..", pdfPath);
 
     // 1) Send emails
     for (let user of userList) {
@@ -76,7 +76,7 @@ Admin`,
         attachments: [
           {
             filename: path.basename(pdfPath),
-            path: pdfFullPath,
+            path: pdfPath,
           },
         ],
       });
@@ -101,14 +101,16 @@ Admin`,
 
 exports.downloadZIP = (req, res) => {
   const zip = new AdmZip();
-  const folder = "pdfs";
+  const folder = "/tmp/pdfs";
 
   fs.readdirSync(folder).forEach(file => {
     zip.addLocalFile(path.join(folder, file));
   });
 
-  const zipPath = "downloads/pdfs.zip";
+  const zipPath = "/tmp/downloads/pdfs.zip";
   zip.writeZip(zipPath);
 
-  res.download(zipPath);
+   res.download(zipPath, "pdfs.zip", err => {
+    if (err) console.error("ZIP download error:", err);
+  });;
 };
