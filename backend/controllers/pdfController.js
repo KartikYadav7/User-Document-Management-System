@@ -5,31 +5,6 @@ const AdmZip = require("adm-zip");
 const User = require("../models/User");
 const nodemailer = require("nodemailer");
 
-// exports.createPDF = async (req, res) => {
-//   const { title } = req.body;
-//   const filename = Date.now() + ".pdf";
-//   const pdfPath = path.join("pdfs", filename);
-
-//   const doc = new PDFDocument();
-//   doc.pipe(fs.createWriteStream(pdfPath));
-//   doc.fontSize(20).text(title, 50, 50);
-//   doc.end();
-
-//   res.json({ pdfPath });
-// };
-
-// exports.assignPDF = async (req, res) => {
-//   const { users, pdfPath } = req.body;
-
-//   await User.updateMany(
-//     { _id: { $in: users } },
-//     { assignedPdf: pdfPath }
-//   );
-
-//   // TODO: Add email sending logic later
-//   res.json({ message: "PDF assigned & emails sent!" });
-// };
-
 exports.uploadOrCreatePDF = async (req, res) => {
   try {
     let pdfPath = "";
